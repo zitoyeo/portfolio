@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { lazy, Suspense } from "react";
+import { GlobalStyle } from "./globalStyles";
+
+//Suspense를 사용하면 컴포넌트가 렌더링되기 전까지 기다릴 수 있습니다
+
+const Home = lazy(() => import("./Pages/Home"));
+const Header = lazy(() => import("./components/Header"));
+const Footer = lazy(() => import("./components/Footer"));
+const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Suspense fallback={null}>
+        <GlobalStyle />
+        <ScrollToTop />
+        <Header />
+        <Home />
+        <Footer />
+      </Suspense>
+    </>
   );
 }
 
