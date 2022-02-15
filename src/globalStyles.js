@@ -62,5 +62,3 @@ html{
         height:auto;
     }
 `;
-
-//  /* Colors */

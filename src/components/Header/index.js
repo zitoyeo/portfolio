@@ -32,6 +32,10 @@ const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
 
+  @media only Screen and (max-width: 48rem) {
+    display: none;
+  }
+
   a {
     font-weight: 600;
     color: white;
@@ -76,6 +80,11 @@ const HamburgerBtn = styled.button`
   width: 2rem;
   height: 2px;
   cursor: pointer;
+  display: none;
+
+  @media only Screen and (max-width: 48rem) {
+    display: inline-block;
+  }
 
   &::before,
   &::after {
@@ -90,12 +99,40 @@ const HamburgerBtn = styled.button`
     transition: all 0.3s;
   }
   &::before {
-    top: -0.5rem;
+    top: ${(props) => (props.clicked ? "0" : "-0.5rem")};
     transform: ${(props) => (props.clicked ? "rotate(135deg)" : "lotate(0)")};
   }
   &::after {
-    top: 0.5rem;
-    transform: rotate(0);
+    top: ${(props) => (props.clicked ? "0" : "0.5rem")};
+    transform: ${(props) => (props.clicked ? "rotate(-135deg)" : "lotate(0)")};
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  opacity: ${(props) => (props.clicked ? "1" : "0")};
+  visibility: ${(props) => (props.clicked ? "visible " : "hidden")};
+
+  background: rgba(53, 53, 63, 0.95);
+  border-radius: 20px;
+  margin: 0.5rem;
+  overflow-x: hidden;
+
+  a {
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 1.5rem;
+    cursor: pointer;
   }
 `;
 
@@ -113,13 +150,27 @@ const Header = () => {
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
         <a href="#services">Services</a>
-        <a href="#contact">
+        <a href="#contact" onClick={() => {}}>
           <Button>Contact Us</Button>
         </a>
       </Nav>
       <HamburgerBtn onClick={() => handleClick()} clicked={click}>
         <span />
       </HamburgerBtn>
+      <MobileMenu clicked={click}>
+        <a href="#home" onClick={() => handleClick()}>
+          Home
+        </a>
+        <a href="#about" onClick={() => handleClick()}>
+          About Us
+        </a>
+        <a href="#services" onClick={() => handleClick()}>
+          Services
+        </a>
+        <a href="#contact" onClick={() => handleClick()}>
+          <Button>Contact Us</Button>
+        </a>
+      </MobileMenu>
     </Headers>
   );
 };
