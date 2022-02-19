@@ -11,14 +11,6 @@ const move = keyframes`
     100% { transform: translateY(-5px) }
 `;
 
-const MobileSvg = styled.img`
-  max-width: 100%;
-  width: calc(30% + 20vw);
-  z-index: 7;
-  height: auto;
-  animation: ${move} 2.5s ease infinite;
-`;
-
 const HomeSection = styled.section`
   width: 100vw;
   height: 45vw;
@@ -64,6 +56,7 @@ const WhiteBlob = styled.div`
   top: calc(2rem + 2vw);
   z-index: 5;
 `;
+
 const MainContent = styled.div`
   display: flex;
   justify-content: center;
@@ -74,6 +67,24 @@ const MainContent = styled.div`
     justify-content: center;
     align-items: center;
     width: 100vw;
+  }
+`;
+
+const MobileSvg = styled.img`
+  max-width: 100%;
+  width: calc(30% + 20vw);
+  height: auto;
+  z-index: 7;
+  animation: ${move} 2.5s ease infinite;
+  @media only Screen and (max-width: 48em) {
+    align-self: flex-start;
+    position: absolute;
+    bottom: 0;
+    width: calc(30% + 20vw);
+    opacity: 0.5;
+  }
+  @media only Screen and (max-width: 40em) {
+    display: none;
   }
 `;
 
@@ -99,16 +110,18 @@ const Lb = styled.div`
   }
 `;
 
-const Topic = styled.div`
+const Topic = styled.span`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-color: var(--nav);
+  color: var(--white);
   font-weight: 700;
   font-size: calc(0.4rem + 0.4vw);
   padding: 0.5rem 1rem;
   border-radius: 20px;
 `;
+
 const Circle = styled.span`
   display: inline-block;
   width: 1rem;
@@ -117,57 +130,64 @@ const Circle = styled.span`
   background-color: var(--purple);
   margin-right: 0.5rem;
 `;
+
 const Title = styled.h1`
-  font-size: calc(2rem +1vw);
+  font-size: calc(2rem + 1vw);
   line-height: 1.2;
   padding: 0.5rem 0;
 `;
+
 const SubText = styled.h5`
   font-size: calc(0.5rem + 0.5vw);
-  color: var (--nav2);
+  color: var(--nav2);
 `;
+
 const CTA = styled.button`
+  background-color: var(--white);
+  color: #0a0b10;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   border-radius: 20px;
   cursor: pointer;
   font-size: calc(0.5rem + 0.5vw);
+  font-weight: 700;
   display: flex;
-  justify-content: center;
   align-items: center;
-  transition: all 0.2s;
-
+  transition: transform 0.2s;
+  img {
+    width: 1.5rem;
+  }
+  @media only screen and (max-width: 48em) {
+    padding: 0.2rem 1rem;
+  }
   &:hover {
     transform: scale(1.1);
   }
-
   &:active {
     transform: scale(0.9);
-  }
-
-  img {
-    width: 1.5rem;
   }
 `;
 
 const HeroSection = () => {
   return (
-    <HomeSection>
+    <HomeSection id="home">
       <Blobs>
         <PinkBlob>
-          <img src={Pink} alt="Pink Blob" width="400" height="400" />
+          <img src={Pink} alt="" width="400" height="400" />{" "}
         </PinkBlob>
         <WhiteBlob>
-          <img src={White} alt="White Blob" width="400" height="400" />
+          <img src={White} alt="" width="400" height="400" />
         </WhiteBlob>
         <PurpleBlob>
-          <img src={Purple} alt="Purple Blob" width="400" height="400" />
+          <img src={Purple} alt="" width="400" height="400" />
         </PurpleBlob>
       </Blobs>
-      <MainContent>
+
+      <MainContent id="home">
         <Lb id="leftBlock">
           <Topic>
-            <Circle /> <span>We Build Web</span>
+            <Circle />
+            <span>We Build Web</span>
           </Topic>
           <Title>Transforming your digital presence</Title>
           <SubText>
@@ -178,10 +198,16 @@ const HeroSection = () => {
             <img src={Arrow} alt="cta" width="100" height="100" />
           </CTA>
         </Lb>
-        <MobileSvg src={Mobile} alt="Mobile Svg" width="400" height="400" />
+
+        <MobileSvg
+          src={Mobile}
+          alt="Mobile Svg"
+          srcset=""
+          width="400"
+          height="400"
+        />
       </MainContent>
     </HomeSection>
   );
 };
-
 export default HeroSection;
