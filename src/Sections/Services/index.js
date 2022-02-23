@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import TextBlock from "../../components/TextBlock";
+import SvgBlock from "../../components/SvgBlock";
 
 const ServiceSection = styled.div`
   width: 100vw;
@@ -19,7 +21,7 @@ const Background = styled.div`
   left: 0;
   bottom: 0;
   width: 100vw;
-  height: 85vw;
+  height: 100%;
   background-color: var(--black);
   background-size: auto 100vh;
   z-index: -1;
@@ -55,6 +57,13 @@ const Triangle = styled.span`
   border-top: 2rem solid var(--background);
 `;
 
+const Content = styled.div`
+  display: flex;
+  margin: 3rem 10rem;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const Service = () => {
   return (
     <ServiceSection>
@@ -63,6 +72,31 @@ const Service = () => {
         <Line />
         <Triangle />
       </Background>
+
+      <Content>
+        <TextBlock
+          topic="Design"
+          title="We build awrad winning Designs"
+          subText="We help clients to build great design to attract more customers"
+        />
+        <SvgBlock svg="Design.svg" />
+      </Content>
+      <Content>
+        <TextBlock
+          topic="Develope"
+          title="I Develope high quality Web & App"
+          subText="I build appropriate solution to develope your website & app with best tools available"
+        />
+        <SvgBlock svg="Develope.svg" />
+      </Content>
+      <Content>
+        <TextBlock
+          topic="Support"
+          title="I Provide support for your digital presence"
+          subText="We help clients to build great design to attract more customers"
+        />
+        <SvgBlock svg="Support.svg" />
+      </Content>
     </ServiceSection>
   );
 };
