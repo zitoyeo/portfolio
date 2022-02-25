@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import TextBlock from "../../components/TextBlock";
 import SvgBlock from "../../components/SvgBlock";
+import Tube from "../../assets/3dtube.png";
+import Cone from "../../assets/3dtriangle.png";
+import Capsule from "../../assets/3dcapsule.png";
 
 const ServiceSection = styled.div`
   width: 100vw;
@@ -62,6 +65,27 @@ const Content = styled.div`
   margin: 3rem 10rem;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  @media only Screen and (max-width: 48em) {
+    display: block;
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+  }
+`;
+
+const OBJ = styled.div`
+  position: absolute;
+  top: 80%;
+  right: 35%;
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only Screen and (max-width: 48em) {
+    opacity: 0.5;
+  }
 `;
 
 const Service = () => {
@@ -79,6 +103,9 @@ const Service = () => {
           title="We build awrad winning Designs"
           subText="We help clients to build great design to attract more customers"
         />
+        <OBJ>
+          <img src={Tube} alt="" width="400" height="400" />
+        </OBJ>
         <SvgBlock svg="Design.svg" />
       </Content>
       <Content>
@@ -87,6 +114,9 @@ const Service = () => {
           title="I Develope high quality Web & App"
           subText="I build appropriate solution to develope your website & app with best tools available"
         />
+        <OBJ>
+          <img src={Cone} alt="" width="400" height="400" />
+        </OBJ>
         <SvgBlock svg="Develope.svg" />
       </Content>
       <Content>
@@ -95,6 +125,9 @@ const Service = () => {
           title="I Provide support for your digital presence"
           subText="We help clients to build great design to attract more customers"
         />
+        <OBJ>
+          <img src={Capsule} alt="" width="400" height="400" />
+        </OBJ>
         <SvgBlock svg="Support.svg" />
       </Content>
     </ServiceSection>
